@@ -35,10 +35,10 @@ def extract_info(url):
         return None
 
 def main():
-    start_row, end_row = 10001, 20000
+    start_row, end_row = 400001, 500000
     urls = []
 
-    with open('gfm_urls.csv', 'r', newline='', encoding='utf-8') as urlfile:
+    with open('../data/gfm_urls.csv', 'r', newline='', encoding='utf-8') as urlfile:
         url_reader = csv.reader(urlfile)
         next(url_reader, None)
 
