@@ -5,10 +5,13 @@ import time
 from multiprocessing import Pool
 import argparse
 from tqdm import tqdm
+from fake_useragent import UserAgent
 
-def extract_info(url):
+
+def extract_info(url, user_agent):
     try:
-        response = requests.get(url, timeout=10)
+        headers = {'User-Agent': user_agent}
+        response = requests.get(url, headers=headers, timeout=10)
         response.raise_for_status()
 
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -37,18 +40,21 @@ def extract_info(url):
             print(f"Error processing {url}: {e}", file=f)
         return None
 
+
 def extract_info_wrapper(url):
     try:
-        return extract_info(url)
+        user_agent = UserAgent().random
+        return extract_info(url, user_agent)
     except Exception as e:
         with open('log.txt', 'a') as f:
             print(f"Error processing {url}: {e}", file=f)
         return None
 
+
 def main(start_row, end_row):
     urls = []
 
-    with open('../data/gfm_urls.csv', 'r', newline='', encoding='utf-8') as urlfile:
+    with open('/Users/xiaohanlu/Desktop/ECE1786/FundSeer/gfm_urls.csv', 'r', newline='', encoding='utf-8') as urlfile:
         url_reader = csv.reader(urlfile)
         next(url_reader, None)
 
@@ -60,10 +66,10 @@ def main(start_row, end_row):
 
     count = 0
     max_requests_before_delay = 500
-    delay_seconds = 10
+    delay_seconds = 30
     pool_size = 10  # You can adjust this based on your system and the number of URLs to process
 
-    with open(f'../data/campaign_info_{start_row}_{end_row}.csv', 'w', newline='', encoding='utf-8') as csvfile:
+    with open(f'campaign_info_{start_row}_{end_row}.csv', 'w', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['url', 'Title', 'Description', 'Goal Amount', 'Raised Amount']
         writer = csv.writer(csvfile)
         writer.writerow(fieldnames)
@@ -75,15 +81,16 @@ def main(start_row, end_row):
 
                 count += 1
                 pbar.update(1)
-                
+
                 if count % max_requests_before_delay == 0:
                     print(f"Waiting for {delay_seconds} seconds to avoid being detected as a bot...")
                     time.sleep(delay_seconds)
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Extract information from URLs within a specified range.')
-    parser.add_argument('--start_row', type=int, default=400001, help='Start row for URL extraction (default: 1)')
-    parser.add_argument('--end_row', type=int, default=500000, help='End row for URL extraction (default: 100)')
+    parser.add_argument('--start_row', type=int, help='Start row for URL extraction (default: 1)')
+    parser.add_argument('--end_row', type=int, help='End row for URL extraction (default: 100)')
 
     args = parser.parse_args()
     main(args.start_row, args.end_row)
