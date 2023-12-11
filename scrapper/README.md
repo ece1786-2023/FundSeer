@@ -51,3 +51,4 @@ This script will provide insights and statistical information about the crawled 
 
 - Ensure that you are respectful and compliant with GoFundMe's terms of service while using this tool.
 - Use the collected data responsibly and ethically.
+- Can use `stats_final.py` to gain some final insights on the data
