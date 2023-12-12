@@ -26,11 +26,11 @@ This folder contains Jupyter notebooks related to the project, encompassing the 
 
     1. **result.csv**
         - Description: CSV file representing the output from ChatGPT.
-        - [Download result.csv](notebooks/GPT%20Trial/result.csv)
+        - [Download result.csv](./GPT%20Trial/result.csv)
 
     2. **sample_30.csv**
         - Description: CSV file representing the input to ChatGPT.
-        - [Download sample_30.csv](notebooks/GPT%20Trial/sample_30.csv)
+        - [Download sample_30.csv](./GPT%20Trial/sample_30.csv)
 
 
 ## Steps to Run a Notebook
