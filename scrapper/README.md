@@ -1,8 +1,8 @@
-# GoFundMe Data Crawler
+# GoFundMe Data Scrapper
 
 ## Overview
 
-This folder provides a set of Python scripts to crawl data from GoFundMe campaigns. Follow the steps below to collect information from GoFundMe URLs and generate statistics based on the collected data.
+This folder provides a set of Python scripts to scrape data from GoFundMe campaigns. Follow the steps below to collect information from GoFundMe URLs and generate statistics based on the collected data.
 
 ## Prerequisites
 
