@@ -22,7 +22,7 @@ Our architecture employs a scrapper module to extract key metadata from medical 
 as $x$, for both models consisted of the goal and campaign narrative combined, aiming to predict the
 likelihood of a campaign being either successful or not, denoted as $p(y|x)$, where $y$ represents the
 campaign class (1 for successful and 0 for unsuccessful). This relationship is visually depicted in the
-follwoing block diagram.
+following block diagram.
 
 ![Block Diagram](imgs/diagram.PNG)
 
